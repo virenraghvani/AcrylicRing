@@ -15,7 +15,7 @@ public class ManipulateNailBlob : MonoBehaviour
 
     [SerializeField] public Transform _toolRaycastPoint;
     [SerializeField] public Transform _marker;
-    //[SerializeField] public Transform _brush;
+    [SerializeField] public Transform _brush;
 
     [SerializeField] [Range(0, 1)] private float _horizontalStrength;
     [SerializeField] [Range(0, 1)] private float _verticalStrength;
