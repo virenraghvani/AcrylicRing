@@ -1,0 +1,10 @@
+- renamed ManipulateNailBlob.MoveVertices() to ManipulateNailBlob.ManipulatePoints()
+
+- added public IEnumerator StartFlow()
+
+- added public float CalculatePercantage()
+
+- fixed MovePoints function, it now calculates the relative distance from the end point, 
+so when the player moves the points they all are moved by the same amount and not relative to the distance of their end positions
+
+- added private IEnumerator AfterTouch(), to make the blob flow after touch, as well as updated to the StartManipulate(), Manipulate() & EndManipulate()
