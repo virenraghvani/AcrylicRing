@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class InputManager : MonoBehaviour
 {
@@ -8,6 +9,10 @@ public class InputManager : MonoBehaviour
 
     private Vector2 _lastMousePos;
     private Vector2 _startMousePos;
+
+    public static Action<Vector2> MouseDragStarted = delegate { };
+    public static Action<Vector2> MouseDragged = delegate { };
+    public static Action<Vector2> MouseDragEnded = delegate { };
 
     public delegate void OnDrag(Vector2 currentPos);
     public delegate void OnClick(Vector2 startPos);
@@ -41,11 +46,15 @@ public class InputManager : MonoBehaviour
             _startMousePos = _lastMousePos;
 
             OnClickCallback.Invoke(_startMousePos);
+
+            MouseDragStarted.Invoke(Input.mousePosition);
         }
 
         if (Input.GetMouseButton(0))
         {
             OnDragCallback.Invoke(Input.mousePosition);
+            MouseDragged.Invoke((_lastMousePos - new Vector2(Input.mousePosition.x, Input.mousePosition.y)) / Screen.height);
+
             _lastMousePos = Input.mousePosition;
         }
 
@@ -53,6 +62,8 @@ public class InputManager : MonoBehaviour
         {
             OnClickEndCallback.Invoke(Input.mousePosition);
             _lastMousePos = Input.mousePosition;
+
+            MouseDragEnded.Invoke(Input.mousePosition);
         }
     }
 }
