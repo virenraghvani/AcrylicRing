@@ -32,8 +32,13 @@ public class GameManager : MonoBehaviour
             rotateCyclinder.Rotate(blobNo);
             blobNo++;
 
-            brushAnimator.Play("Brush", -1, 0f);
+            Invoke("BrushMoveDelay", 0.5f);
         }
+    }
+
+    void BrushMoveDelay()
+    {
+        brushAnimator.Play("Brush", -1, 0f);
     }
 
     public void OnTinEntered()

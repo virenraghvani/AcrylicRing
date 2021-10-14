@@ -41,8 +41,10 @@ public class MoveTool : MonoBehaviour
     private void LateUpdate()
     {
         if (moveToDefaultPos) {
-            transform.localPosition = startPos;
+            //transform.localPosition = startPos;
             moveToDefaultPos = false;
+
+            LeanTween.moveLocal(gameObject, startPos, .5f);
         }
 
     }
