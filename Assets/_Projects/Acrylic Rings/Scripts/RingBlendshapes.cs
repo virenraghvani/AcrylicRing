@@ -32,7 +32,7 @@ public class RingBlendshapes : MonoBehaviour
             //    blendWeight += 1f;     // Nail file time for second half
             //}
 
-            blendWeight -= .1f;     // Nail file time for second half
+            blendWeight -= .5f;     // Nail file time for second half
 
             // Filing progrerss
             for (int i = 0; i < 11; i++)
