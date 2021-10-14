@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
 
     public RotateCyclinder rotateCyclinder;
 
-    public Animator brushAnimator, ringHolderAnimator;
+    public Animator brushAnimator, ringHolderAnimator, bottleAnimator;
 
     private void Start()
     {
@@ -61,5 +61,7 @@ public class GameManager : MonoBehaviour
     void MoveRingOut()
     {
         ringHolderAnimator.SetTrigger("removeRing");
+        brushAnimator.SetTrigger("moveBrushOut");
+        bottleAnimator.SetTrigger("moveBottleOut");
     }
 }
