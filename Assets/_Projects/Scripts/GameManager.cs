@@ -17,7 +17,12 @@ public class GameManager : MonoBehaviour
 
     public RotateCyclinder rotateCyclinder;
 
-    public Animator brushAnimator, ringHolderAnimator, bottleAnimator;
+    public Animator brushAnimator, ringHolderAnimator, bottleAnimator, sandingMachineAnimator;
+
+    public RingBlendshapes ringBlendshapes;
+
+    [SerializeField]
+    private GameObject sandParticles;
 
     private void Start()
     {
@@ -30,7 +35,7 @@ public class GameManager : MonoBehaviour
         {
             if (blobNo > 1)
             {
-                MoveRingOut();
+                StartCoroutine(MoveRingOut());
                 return;
             }
             moveTool.moveToDefaultPos = true;
@@ -58,10 +63,19 @@ public class GameManager : MonoBehaviour
         blob[blobNo].SetActive(true);
     }
 
-    void MoveRingOut()
+    IEnumerator MoveRingOut()
     {
         ringHolderAnimator.SetTrigger("removeRing");
         brushAnimator.SetTrigger("moveBrushOut");
         bottleAnimator.SetTrigger("moveBottleOut");
+
+        yield return new WaitForSeconds(2);
+
+        sandingMachineAnimator.gameObject.SetActive(true);
+
+        ringHolderAnimator.enabled = false;
+        ringBlendshapes.startBlendShape = true;
+
+        sandParticles.SetActive(true);
     }
 }
