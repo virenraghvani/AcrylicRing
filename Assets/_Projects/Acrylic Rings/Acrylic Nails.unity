@@ -305,12 +305,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ee1f1433c16c41449355ce6ab86cd2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _nailBlob: {fileID: -9011445279268985354, guid: 1657f562259644de0a9172448b20f135,
-    type: 3}
-  _nailFinished: {fileID: -1544036828511528069, guid: 1657f562259644de0a9172448b20f135,
-    type: 3}
-  _toolRaycastPoint: {fileID: 1807401185}
-  _marker: {fileID: 1837304767}
+  _interpolatedMeshes: []
   _radius: 1
   _strength: 10
   _falloffCurve:
@@ -355,15 +350,40 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  _flowStrength: 0
-  _flowDuration: 0
-  _flowCurve:
+  _toolRaycastPoint: {fileID: 1807401185}
+  _marker: {fileID: 1837304767}
+  _horizontalStrength: 0
+  _verticalStrength: 0
+  _horizontalFlow: 0
+  _verticalFlow: 0
+  _perlinOffset: 0.2
+  _perlinFrequency: 6
+  _perlinMagnitude: 0.1
+  _perlinPowerPerDistance:
     serializedVersion: 2
     m_Curve: []
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  _startFlowDuration: 0
+  _progressWaveMagnitude: 0.2
+  _progressWaveCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _distanceToPowerRatio: 3
+  _retractionActivateMaxStrength: 0.3
+  _retractionTime: 2
+  _retractionForce: 40
+  _retractionForceToDistance:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  IS_READY_FOR_POWDER: 0
+  audioClip: {fileID: 0}
 --- !u!64 &80464965
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -390,12 +410,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ee1f1433c16c41449355ce6ab86cd2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _nailBlob: {fileID: -7033812733868257201, guid: 1657f562259644de0a9172448b20f135,
-    type: 3}
-  _nailFinished: {fileID: 5403086961850071840, guid: 1657f562259644de0a9172448b20f135,
-    type: 3}
-  _toolRaycastPoint: {fileID: 1807401185}
-  _marker: {fileID: 1837304767}
+  _interpolatedMeshes: []
   _radius: 1
   _strength: 10
   _falloffCurve:
@@ -431,15 +446,40 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  _flowStrength: 0
-  _flowDuration: 0
-  _flowCurve:
+  _toolRaycastPoint: {fileID: 1807401185}
+  _marker: {fileID: 1837304767}
+  _horizontalStrength: 0
+  _verticalStrength: 0
+  _horizontalFlow: 0
+  _verticalFlow: 0
+  _perlinOffset: 0.2
+  _perlinFrequency: 6
+  _perlinMagnitude: 0.1
+  _perlinPowerPerDistance:
     serializedVersion: 2
     m_Curve: []
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  _startFlowDuration: 0
+  _progressWaveMagnitude: 0.2
+  _progressWaveCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _distanceToPowerRatio: 3
+  _retractionActivateMaxStrength: 0.3
+  _retractionTime: 2
+  _retractionForce: 40
+  _retractionForceToDistance:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  IS_READY_FOR_POWDER: 0
+  audioClip: {fileID: 0}
 --- !u!64 &80464967
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -466,11 +506,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ee1f1433c16c41449355ce6ab86cd2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _nailBlob: {fileID: 14152809942188108, guid: 1657f562259644de0a9172448b20f135, type: 3}
-  _nailFinished: {fileID: 3339809206083484286, guid: 1657f562259644de0a9172448b20f135,
-    type: 3}
-  _toolRaycastPoint: {fileID: 1807401185}
-  _marker: {fileID: 1837304767}
+  _interpolatedMeshes: []
   _radius: 1
   _strength: 10
   _falloffCurve:
@@ -506,15 +542,40 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  _flowStrength: 0
-  _flowDuration: 0
-  _flowCurve:
+  _toolRaycastPoint: {fileID: 1807401185}
+  _marker: {fileID: 1837304767}
+  _horizontalStrength: 0
+  _verticalStrength: 0
+  _horizontalFlow: 0
+  _verticalFlow: 0
+  _perlinOffset: 0.2
+  _perlinFrequency: 6
+  _perlinMagnitude: 0.1
+  _perlinPowerPerDistance:
     serializedVersion: 2
     m_Curve: []
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  _startFlowDuration: 0
+  _progressWaveMagnitude: 0.2
+  _progressWaveCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _distanceToPowerRatio: 3
+  _retractionActivateMaxStrength: 0.3
+  _retractionTime: 2
+  _retractionForce: 40
+  _retractionForceToDistance:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  IS_READY_FOR_POWDER: 0
+  audioClip: {fileID: 0}
 --- !u!1 &153069047
 GameObject:
   m_ObjectHideFlags: 0
@@ -1636,7 +1697,7 @@ Transform:
   m_GameObject: {fileID: 1525985214}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -2.3196054, y: -13.52, z: -2.6883457}
-  m_LocalScale: {x: 10, y: 1, z: 10}
+  m_LocalScale: {x: 15, y: 1, z: 15}
   m_Children: []
   m_Father: {fileID: 446795986}
   m_RootOrder: 4
@@ -1977,7 +2038,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1837304763}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -3692,13 +3753,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ee1f1433c16c41449355ce6ab86cd2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _nailBlob: {fileID: 14152809942188108, guid: 40b43a468477044b7b732c1d614d99c8, type: 3}
-  _nailFinished: {fileID: 3339809206083484286, guid: 40b43a468477044b7b732c1d614d99c8,
-    type: 3}
-  _toolRaycastPoint: {fileID: 1807401185}
-  _marker: {fileID: 1837304767}
-  _radius: 1
-  _strength: 10
+  _interpolatedMeshes:
+  - {fileID: 14152809942188108, guid: 40b43a468477044b7b732c1d614d99c8, type: 3}
+  - {fileID: 3339809206083484286, guid: 40b43a468477044b7b732c1d614d99c8, type: 3}
+  _radius: 0.9
+  _strength: 200
   _falloffCurve:
     serializedVersion: 2
     m_Curve:
@@ -3723,9 +3782,59 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  _flowStrength: 0
-  _flowDuration: 0
-  _flowCurve:
+  _toolRaycastPoint: {fileID: 1807401185}
+  _marker: {fileID: 1837304767}
+  _horizontalStrength: 0.611
+  _verticalStrength: 0.667
+  _horizontalFlow: 0.016
+  _verticalFlow: 0.048
+  _perlinOffset: 0.2
+  _perlinFrequency: 1
+  _perlinMagnitude: 0.05
+  _perlinPowerPerDistance:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.5
+      value: 1
+      inSlope: -0
+      outSlope: 0.006315202
+      tangentMode: 5
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.20586777
+    - serializedVersion: 3
+      time: 0.98
+      value: 0
+      inSlope: -0.09039456
+      outSlope: 0
+      tangentMode: 65
+      weightedMode: 0
+      inWeight: 0.20413001
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: -0
+      outSlope: 0.02338178
+      tangentMode: 5
+      weightedMode: 0
+      inWeight: 0.21115494
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _progressWaveMagnitude: 0.3
+  _progressWaveCurve:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
@@ -3776,7 +3885,54 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  _startFlowDuration: 1
+  _distanceToPowerRatio: 3
+  _retractionActivateMaxStrength: 0.3
+  _retractionTime: 0.5
+  _retractionForce: -5
+  _retractionForceToDistance:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.5
+      value: 1
+      inSlope: -0
+      outSlope: 0.006315202
+      tangentMode: 5
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.20586777
+    - serializedVersion: 3
+      time: 0.98
+      value: 0
+      inSlope: -0.09039456
+      outSlope: 0
+      tangentMode: 65
+      weightedMode: 0
+      inWeight: 0.20413001
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: -0
+      outSlope: 0.02338178
+      tangentMode: 5
+      weightedMode: 0
+      inWeight: 0.21115494
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  IS_READY_FOR_POWDER: 0
+  audioClip: {fileID: 0}
 --- !u!4 &7060930613939556389
 Transform:
   m_ObjectHideFlags: 0
@@ -4052,14 +4208,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ee1f1433c16c41449355ce6ab86cd2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _nailBlob: {fileID: -9011445279268985354, guid: 40b43a468477044b7b732c1d614d99c8,
-    type: 3}
-  _nailFinished: {fileID: -1544036828511528069, guid: 40b43a468477044b7b732c1d614d99c8,
-    type: 3}
-  _toolRaycastPoint: {fileID: 1807401185}
-  _marker: {fileID: 1837304767}
-  _radius: 1
-  _strength: 10
+  _interpolatedMeshes:
+  - {fileID: -9011445279268985354, guid: 40b43a468477044b7b732c1d614d99c8, type: 3}
+  - {fileID: -1544036828511528069, guid: 40b43a468477044b7b732c1d614d99c8, type: 3}
+  _radius: 0.9
+  _strength: 200
   _falloffCurve:
     serializedVersion: 2
     m_Curve:
@@ -4084,9 +4237,59 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  _flowStrength: 0
-  _flowDuration: 0
-  _flowCurve:
+  _toolRaycastPoint: {fileID: 1807401185}
+  _marker: {fileID: 1837304767}
+  _horizontalStrength: 0.611
+  _verticalStrength: 0.667
+  _horizontalFlow: 0.016
+  _verticalFlow: 0.048
+  _perlinOffset: 0.2
+  _perlinFrequency: 1
+  _perlinMagnitude: 0.05
+  _perlinPowerPerDistance:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.5
+      value: 1
+      inSlope: -0
+      outSlope: 0.006315202
+      tangentMode: 5
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.20586777
+    - serializedVersion: 3
+      time: 0.98
+      value: 0
+      inSlope: -0.09039456
+      outSlope: 0
+      tangentMode: 65
+      weightedMode: 0
+      inWeight: 0.20413001
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: -0
+      outSlope: 0.02338178
+      tangentMode: 5
+      weightedMode: 0
+      inWeight: 0.21115494
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _progressWaveMagnitude: 0.3
+  _progressWaveCurve:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
@@ -4137,7 +4340,54 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  _startFlowDuration: 1
+  _distanceToPowerRatio: 3
+  _retractionActivateMaxStrength: 0.3
+  _retractionTime: 0.5
+  _retractionForce: -5
+  _retractionForceToDistance:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.5
+      value: 1
+      inSlope: -0
+      outSlope: 0.006315202
+      tangentMode: 5
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.20586777
+    - serializedVersion: 3
+      time: 0.98
+      value: 0
+      inSlope: -0.09039456
+      outSlope: 0
+      tangentMode: 65
+      weightedMode: 0
+      inWeight: 0.20413001
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: -0
+      outSlope: 0.02338178
+      tangentMode: 5
+      weightedMode: 0
+      inWeight: 0.21115494
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  IS_READY_FOR_POWDER: 0
+  audioClip: {fileID: 0}
 --- !u!1 &8150423825707567995
 GameObject:
   m_ObjectHideFlags: 0
@@ -4573,14 +4823,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ee1f1433c16c41449355ce6ab86cd2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _nailBlob: {fileID: -7033812733868257201, guid: 40b43a468477044b7b732c1d614d99c8,
-    type: 3}
-  _nailFinished: {fileID: 5403086961850071840, guid: 40b43a468477044b7b732c1d614d99c8,
-    type: 3}
-  _toolRaycastPoint: {fileID: 1807401185}
-  _marker: {fileID: 1837304767}
-  _radius: 1
-  _strength: 10
+  _interpolatedMeshes:
+  - {fileID: -7033812733868257201, guid: 40b43a468477044b7b732c1d614d99c8, type: 3}
+  - {fileID: 5403086961850071840, guid: 40b43a468477044b7b732c1d614d99c8, type: 3}
+  _radius: 0.9
+  _strength: 200
   _falloffCurve:
     serializedVersion: 2
     m_Curve:
@@ -4605,9 +4852,59 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  _flowStrength: 0
-  _flowDuration: 0
-  _flowCurve:
+  _toolRaycastPoint: {fileID: 1807401185}
+  _marker: {fileID: 1837304767}
+  _horizontalStrength: 0.611
+  _verticalStrength: 0.667
+  _horizontalFlow: 0.016
+  _verticalFlow: 0.048
+  _perlinOffset: 0.2
+  _perlinFrequency: 1
+  _perlinMagnitude: 0.05
+  _perlinPowerPerDistance:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.5
+      value: 1
+      inSlope: -0
+      outSlope: 0.006315202
+      tangentMode: 5
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.20586777
+    - serializedVersion: 3
+      time: 0.98
+      value: 0
+      inSlope: -0.09039456
+      outSlope: 0
+      tangentMode: 65
+      weightedMode: 0
+      inWeight: 0.20413001
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: -0
+      outSlope: 0.02338178
+      tangentMode: 5
+      weightedMode: 0
+      inWeight: 0.21115494
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _progressWaveMagnitude: 0.3
+  _progressWaveCurve:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
@@ -4658,4 +4955,51 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  _startFlowDuration: 1
+  _distanceToPowerRatio: 3
+  _retractionActivateMaxStrength: 0.3
+  _retractionTime: 0.5
+  _retractionForce: -5
+  _retractionForceToDistance:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.5
+      value: 1
+      inSlope: -0
+      outSlope: 0.006315202
+      tangentMode: 5
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.20586777
+    - serializedVersion: 3
+      time: 0.98
+      value: 0
+      inSlope: -0.09039456
+      outSlope: 0
+      tangentMode: 65
+      weightedMode: 0
+      inWeight: 0.20413001
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: -0
+      outSlope: 0.02338178
+      tangentMode: 5
+      weightedMode: 0
+      inWeight: 0.21115494
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  IS_READY_FOR_POWDER: 0
+  audioClip: {fileID: 0}
