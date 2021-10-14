@@ -9,12 +9,18 @@ public class MoveTool : MonoBehaviour
     private Vector3 _lastPos;
     private float   _camDist;
 
+    public bool moveToDefaultPos;
+
+    public Vector3 startPos;
+
     private void Awake()
     {
         InputManager.inst.OnClickCallback += StartMove;
         InputManager.inst.OnDragCallback  += Move;
 
         _camDist = Vector3.Distance(Camera.main.transform.position, transform.position);
+
+        startPos = transform.localPosition;
     }
 
     private void StartMove(Vector2 startPos)
@@ -30,5 +36,14 @@ public class MoveTool : MonoBehaviour
         _lastPos = currentPos;
 
         transform.position += delta * _sensitivity;
+    }
+
+    private void LateUpdate()
+    {
+        if (moveToDefaultPos) {
+            transform.localPosition = startPos;
+            moveToDefaultPos = false;
+        }
+
     }
 }

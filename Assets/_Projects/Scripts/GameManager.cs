@@ -13,16 +13,18 @@ public class GameManager : MonoBehaviour
     private GameObject brush, blob1;
 
 
+    public MoveTool moveTool;
+
     private void Start()
     {
-        blobNo = 1;
+        blobNo = 0;
     }
 
     void Update()
     {
         if(Input.GetKeyDown(KeyCode.Tab))
         {
-            blob[blobNo].SetActive(true);
+            moveTool.moveToDefaultPos = true;
             blobNo++;
         }
     }
@@ -36,6 +38,6 @@ public class GameManager : MonoBehaviour
     public void OnBrushPlaced()
     {
         // Activate Blob
-        blob1.SetActive(true);
+        blob[blobNo].SetActive(true);
     }
 }
