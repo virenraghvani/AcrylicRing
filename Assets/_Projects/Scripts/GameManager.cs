@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
 
     public RotateCyclinder rotateCyclinder;
 
-    public Animator brushAnimator;
+    public Animator brushAnimator, ringHolderAnimator;
 
     private void Start()
     {
@@ -28,6 +28,11 @@ public class GameManager : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Tab))
         {
+            if (blobNo > 1)
+            {
+                MoveRingOut();
+                return;
+            }
             moveTool.moveToDefaultPos = true;
             rotateCyclinder.Rotate(blobNo);
             blobNo++;
@@ -51,5 +56,10 @@ public class GameManager : MonoBehaviour
     {
         // Activate Blob
         blob[blobNo].SetActive(true);
+    }
+
+    void MoveRingOut()
+    {
+        ringHolderAnimator.SetTrigger("removeRing");
     }
 }
