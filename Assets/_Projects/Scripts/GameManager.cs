@@ -15,6 +15,10 @@ public class GameManager : MonoBehaviour
 
     public MoveTool moveTool;
 
+    public RotateCyclinder rotateCyclinder;
+
+    public Animator brushAnimator;
+
     private void Start()
     {
         blobNo = 0;
@@ -25,7 +29,10 @@ public class GameManager : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Tab))
         {
             moveTool.moveToDefaultPos = true;
+            rotateCyclinder.Rotate(blobNo);
             blobNo++;
+
+            brushAnimator.Play("Brush", -1, 0f);
         }
     }
 
