@@ -7,6 +7,7 @@ public class ManipulateNailBlob : MonoBehaviour
 {
     public static Action<ManipulateNailBlob> Spawned = delegate { };
     public static Action<float> ProgressChanged = delegate { };
+    public static Action OnCompleted = delegate { };
 
     [SerializeField] private List<MeshFilter> _interpolatedMeshes;
     [SerializeField] private float _radius;
@@ -53,7 +54,7 @@ public class ManipulateNailBlob : MonoBehaviour
     [SerializeField] private AnimationCurve _retractionForceToDistance;
     private float _retractionTimer;
 
-    private float _autocompletePercentage = 0.7f;
+    private float _autocompletePercentage = 0.5f;
     private float _autocompleteSpeed = 0.5f;
     private bool _isAutocompleting = false;
 
@@ -387,7 +388,7 @@ public class ManipulateNailBlob : MonoBehaviour
             sum += _pointsNormalizedPos[i].y;
         }
 
-       //s Debug.Log("gggg " + sum / _pointsNormalizedPos.Count);
+        Debug.Log("gggg " + sum / _pointsNormalizedPos.Count);
 
         return sum / _pointsNormalizedPos.Count;
 

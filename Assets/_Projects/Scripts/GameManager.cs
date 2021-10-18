@@ -24,6 +24,18 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private GameObject sandParticles;
 
+    private bool isAutoCompleting;
+
+    private void Awake()
+    {
+        ManipulateNailBlob.ProgressChanged += OnProgressChanged;
+    }
+
+    private void Destroy()
+    {
+        ManipulateNailBlob.ProgressChanged -= OnProgressChanged;
+    }
+
     private void Start()
     {
         blobNo = 0;
@@ -46,8 +58,29 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void OnProgressChanged(float percentage)
+    {
+        if (percentage > .5f && !isAutoCompleting)
+        {
+            isAutoCompleting = true;
+
+            if (blobNo > 1)
+            {
+                StartCoroutine(MoveRingOut());
+                return;
+            }
+            moveTool.moveToDefaultPos = true;
+            rotateCyclinder.Rotate(blobNo);
+            blobNo++;
+
+            Invoke("BrushMoveDelay", 0.5f);
+        }
+    }
+
     void BrushMoveDelay()
     {
+        blob[blobNo - 1].GetComponent<ManipulateNailBlob>().enabled = false;
+        isAutoCompleting = false;
         brushAnimator.Play("Brush", -1, 0f);
     }
 
