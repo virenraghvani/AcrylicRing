@@ -10,14 +10,14 @@ public class GameManager : MonoBehaviour
     private int blobNo;
 
     [SerializeField]
-    private GameObject brush, blob1;
+    private GameObject brush, blob1, dryingMachine, ringParts, ringFinal, nailPolishBottle;
 
 
     public MoveTool moveTool;
 
     public RotateCyclinder rotateCyclinder;
 
-    public Animator brushAnimator, ringHolderAnimator, bottleAnimator, sandingMachineAnimator;
+    public Animator brushAnimator, ringHolderAnimator, bottleAnimator, sandingMachineAnimator, dryingMachineAnimator;
 
     public RingBlendshapes ringBlendshapes;
 
@@ -47,7 +47,7 @@ public class GameManager : MonoBehaviour
         {
             if (blobNo > 1)
             {
-                StartCoroutine(MoveRingOut());
+                StartCoroutine(StartDrying());
                 return;
             }
             moveTool.moveToDefaultPos = true;
@@ -66,7 +66,7 @@ public class GameManager : MonoBehaviour
 
             if (blobNo > 1)
             {
-                StartCoroutine(MoveRingOut());
+                StartCoroutine(StartDrying());
                 return;
             }
             moveTool.moveToDefaultPos = true;
@@ -95,6 +95,35 @@ public class GameManager : MonoBehaviour
         // Activate Blob
         blob[blobNo].SetActive(true);
     }
+
+    IEnumerator StartDrying() {
+
+        ringHolderAnimator.SetTrigger("bottleOut");
+        brushAnimator.SetTrigger("moveBrushOut");
+        bottleAnimator.SetTrigger("moveBottleOut");
+
+        yield return new WaitForSeconds(.12f);
+
+        ringFinal.SetActive(true);
+        ringParts.SetActive(false);
+
+
+        yield return new WaitForSeconds(1);
+
+        nailPolishBottle.SetActive(false);
+
+        dryingMachineAnimator.gameObject.SetActive(true);
+
+        yield return new WaitForSeconds(1);
+
+        dryingMachineAnimator.SetTrigger("dryIn");
+
+        yield return new WaitForSeconds(2);
+
+        dryingMachineAnimator.SetTrigger("dryOut");
+
+    }
+
 
     IEnumerator MoveRingOut()
     {
