@@ -12,6 +12,11 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private GameObject brush, blob1, dryingMachine, ringParts, ringFinal, nailPolishBottle;
 
+    [SerializeField]
+    private SkinnedMeshRenderer ringMesh;
+
+    [SerializeField]
+    private Material matShine, matRough;
 
     public MoveTool moveTool;
 
@@ -25,6 +30,11 @@ public class GameManager : MonoBehaviour
     private GameObject sandParticles;
 
     private bool isAutoCompleting;
+
+    [SerializeField]
+    private GameObject cam1, cam2;
+
+
 
     private void Awake()
     {
@@ -116,12 +126,29 @@ public class GameManager : MonoBehaviour
 
         yield return new WaitForSeconds(1);
 
-        dryingMachineAnimator.SetTrigger("dryIn");
+        ringHolderAnimator.SetTrigger("dryIn");
 
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(3);
 
-        dryingMachineAnimator.SetTrigger("dryOut");
+        ringMesh.material = matRough;
+        ringHolderAnimator.SetTrigger("dryOut");
 
+        yield return new WaitForSeconds(1);
+
+        dryingMachineAnimator.SetTrigger("out");
+
+        yield return new WaitForSeconds(1);
+
+
+        cam1.SetActive(false);
+        cam2.SetActive(true);
+
+        sandingMachineAnimator.gameObject.SetActive(true);
+
+        ringHolderAnimator.enabled = false;
+        ringBlendshapes.startBlendShape = true;
+
+        sandParticles.SetActive(true);
     }
 
 
