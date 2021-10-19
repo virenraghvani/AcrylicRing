@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
     private int blobNo;
 
     [SerializeField]
-    private GameObject brush, blob1, dryingMachine, ringParts, ringFinal, nailPolishBottle;
+    private GameObject brush, blob1, dryingMachine, ringParts, ringFinal, nailPolishBottle, dottedLine;
 
     [SerializeField]
     private SkinnedMeshRenderer ringMesh;
@@ -73,6 +73,7 @@ public class GameManager : MonoBehaviour
         if (percentage > .5f && !isAutoCompleting)
         {
             isAutoCompleting = true;
+            dottedLine.SetActive(false);
 
             if (blobNo > 1)
             {
@@ -92,6 +93,7 @@ public class GameManager : MonoBehaviour
         blob[blobNo - 1].GetComponent<ManipulateNailBlob>().enabled = false;
         isAutoCompleting = false;
         brushAnimator.Play("Brush", -1, 0f);
+
     }
 
     public void OnTinEntered()
@@ -104,6 +106,9 @@ public class GameManager : MonoBehaviour
     {
         // Activate Blob
         blob[blobNo].SetActive(true);
+
+        dottedLine.SetActive(true);
+
     }
 
     IEnumerator StartDrying() {
