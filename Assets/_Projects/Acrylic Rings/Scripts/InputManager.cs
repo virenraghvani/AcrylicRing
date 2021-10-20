@@ -40,6 +40,9 @@ public class InputManager : MonoBehaviour
 
     void Update()
     {
+        if (!GameManager.IS_READY_FOR_INPUT)
+            return;
+
         if (Input.GetMouseButtonDown(0))
         {
             _lastMousePos  = Input.mousePosition;

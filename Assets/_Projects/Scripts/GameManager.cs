@@ -10,7 +10,9 @@ public class GameManager : MonoBehaviour
     private int blobNo;
 
     [SerializeField]
-    private GameObject brush, blob1, dryingMachine, ringParts, ringFinal, nailPolishBottle, dottedLine;
+    private GameObject brush, blob1, dryingMachine, ringParts, ringFinal, nailPolishBottle, dottedLine, sandingMachine;
+
+    public MeshRenderer ringFinalOutput;
 
     [SerializeField]
     private SkinnedMeshRenderer ringMesh;
@@ -22,7 +24,7 @@ public class GameManager : MonoBehaviour
 
     public RotateCyclinder rotateCyclinder;
 
-    public Animator brushAnimator, ringHolderAnimator, bottleAnimator, sandingMachineAnimator, dryingMachineAnimator;
+    public Animator brushAnimator, ringHolderAnimator, bottleAnimator, dryingMachineAnimator;
 
     public RingBlendshapes ringBlendshapes;
 
@@ -34,7 +36,9 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private GameObject cam1, cam2;
 
+    public static bool IS_READY_FOR_INPUT;
 
+    public bool isSandingUpperPart;
 
     private void Awake()
     {
@@ -74,6 +78,7 @@ public class GameManager : MonoBehaviour
         {
             isAutoCompleting = true;
             dottedLine.SetActive(false);
+            IS_READY_FOR_INPUT = false;
 
             if (blobNo > 1)
             {
@@ -108,7 +113,7 @@ public class GameManager : MonoBehaviour
         blob[blobNo].SetActive(true);
 
         dottedLine.SetActive(true);
-
+        IS_READY_FOR_INPUT = true;
     }
 
     IEnumerator StartDrying() {
@@ -129,11 +134,11 @@ public class GameManager : MonoBehaviour
 
         dryingMachineAnimator.gameObject.SetActive(true);
 
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(.1f);
 
         ringHolderAnimator.SetTrigger("dryIn");
 
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(5);
 
         ringMesh.material = matRough;
         ringHolderAnimator.SetTrigger("dryOut");
@@ -148,7 +153,8 @@ public class GameManager : MonoBehaviour
         cam1.SetActive(false);
         cam2.SetActive(true);
 
-        sandingMachineAnimator.gameObject.SetActive(true);
+        sandingMachine.SetActive(true);
+        IS_READY_FOR_INPUT = true;
 
         ringHolderAnimator.enabled = false;
         ringBlendshapes.startBlendShape = true;
@@ -165,11 +171,32 @@ public class GameManager : MonoBehaviour
 
         yield return new WaitForSeconds(2);
 
-        sandingMachineAnimator.gameObject.SetActive(true);
+        sandingMachine.SetActive(true);
 
         ringHolderAnimator.enabled = false;
         ringBlendshapes.startBlendShape = true;
 
         sandParticles.SetActive(true);
+    }
+
+    public void SandingUpperDone()
+    {
+        Debug.Log("rotate ring");
+
+        ringHolderAnimator.enabled = true;
+        ringHolderAnimator.SetTrigger("ringRotate");
+
+        Invoke("ReadyForSandingBottomPart", 1);
+    }
+
+    public void SandingBottomDone()
+    {
+        ringHolderAnimator.enabled = true;
+    }
+
+    void ReadyForSandingBottomPart()
+    {
+        IS_READY_FOR_INPUT = true;
+        ringHolderAnimator.enabled = false;
     }
 }
