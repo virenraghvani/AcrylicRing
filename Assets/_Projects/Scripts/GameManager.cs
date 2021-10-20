@@ -124,8 +124,7 @@ public class GameManager : MonoBehaviour
 
         yield return new WaitForSeconds(.12f);
 
-        ringFinal.SetActive(true);
-        ringParts.SetActive(false);
+      
 
 
         yield return new WaitForSeconds(1);
@@ -138,7 +137,13 @@ public class GameManager : MonoBehaviour
 
         ringHolderAnimator.SetTrigger("dryIn");
 
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(2);
+
+        ringFinal.SetActive(true);
+        ringParts.SetActive(false);
+
+
+        yield return new WaitForSeconds(3);
 
         ringMesh.material = matRough;
         ringHolderAnimator.SetTrigger("dryOut");
