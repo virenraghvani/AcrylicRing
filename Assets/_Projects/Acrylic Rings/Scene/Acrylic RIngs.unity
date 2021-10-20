@@ -8360,7 +8360,7 @@ GameObject:
   - component: {fileID: 464683865}
   - component: {fileID: 464683864}
   - component: {fileID: 464683866}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: Dotted line
   m_TagString: Untagged
   m_Icon: {fileID: 0}
