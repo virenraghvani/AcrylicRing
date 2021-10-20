@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
     private int blobNo;
 
     [SerializeField]
-    private GameObject brush, blob1, dryingMachine, ringParts, ringFinal, nailPolishBottle, dottedLine, sandingMachine;
+    private GameObject brush, blob1, dryingMachine, ringParts, ringFinal, nailPolishBottle, dottedLine, sandingMachine, accessoryStep;
 
     public MeshRenderer ringFinalOutput;
 
@@ -197,11 +197,21 @@ public class GameManager : MonoBehaviour
     public void SandingBottomDone()
     {
         ringHolderAnimator.enabled = true;
+        ringHolderAnimator.SetTrigger("accessoryPos");
+
+        sandingMachine.SetActive(false);
+
+        Invoke("DelayAccessoryStep", 1);
     }
 
     void ReadyForSandingBottomPart()
     {
         IS_READY_FOR_INPUT = true;
         ringHolderAnimator.enabled = false;
+    }
+
+    void DelayAccessoryStep()
+    {
+        accessoryStep.SetActive(true);
     }
 }

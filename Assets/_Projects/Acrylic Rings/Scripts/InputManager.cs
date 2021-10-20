@@ -48,25 +48,25 @@ public class InputManager : MonoBehaviour
             _lastMousePos  = Input.mousePosition;
             _startMousePos = _lastMousePos;
 
-            OnClickCallback.Invoke(_startMousePos);
+            OnClickCallback?.Invoke(_startMousePos);
 
-            MouseDragStarted.Invoke(Input.mousePosition);
+            MouseDragStarted?.Invoke(Input.mousePosition);
         }
 
         if (Input.GetMouseButton(0))
         {
-            OnDragCallback.Invoke(Input.mousePosition);
-            MouseDragged.Invoke((_lastMousePos - new Vector2(Input.mousePosition.x, Input.mousePosition.y)) / Screen.height);
+            OnDragCallback?.Invoke(Input.mousePosition);
+            MouseDragged?.Invoke((_lastMousePos - new Vector2(Input.mousePosition.x, Input.mousePosition.y)) / Screen.height);
 
             _lastMousePos = Input.mousePosition;
         }
 
         if (Input.GetMouseButtonUp(0))
         {
-            OnClickEndCallback.Invoke(Input.mousePosition);
+            OnClickEndCallback?.Invoke(Input.mousePosition);
             _lastMousePos = Input.mousePosition;
 
-            MouseDragEnded.Invoke(Input.mousePosition);
+            MouseDragEnded?.Invoke(Input.mousePosition);
         }
     }
 }

@@ -51,17 +51,21 @@ public class ParticleTrigger : MonoBehaviour
                     gameManager.isSandingUpperPart = false;
 
                     count = 0;
+                    upperRingPart.gameObject.SetActive(false);
+
                 }
             }else
             {
                 glossiness = .3f * count / totalNoBottomParticles;
                 gameManager.ringFinalOutput.material.SetFloat("_Glossiness", glossiness + .3f);
 
-                if (count >= totalNoBottomParticles)
+                if (count >= totalNoBottomParticles - 1)
                 {
                     GameManager.IS_READY_FOR_INPUT = false;
                     sandingMachine.SandingDone();
                     gameManager.SandingBottomDone();
+
+                    bottomRingPart.gameObject.SetActive(false);
 
                     Debug.Log("hhhh Bottom part is done");
 

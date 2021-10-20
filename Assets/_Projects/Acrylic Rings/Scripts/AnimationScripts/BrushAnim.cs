@@ -6,8 +6,15 @@ public class BrushAnim : MonoBehaviour
 {
     public GameManager gameManager;
 
+
+
     public void BrushPlaced()
     {
         gameManager.OnBrushPlaced();
+    }
+
+    public void OnBrushDipped()
+    {
+        gameManager.bottleAnimator.SetTrigger("onBrushDipped");
     }
 }
