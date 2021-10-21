@@ -34,7 +34,7 @@ public class GameManager : MonoBehaviour
     private bool isAutoCompleting;
 
     [SerializeField]
-    private GameObject cam1, cam2;
+    private GameObject cam1, cam2_dryer, cam3;
 
     public static bool IS_READY_FOR_INPUT;
 
@@ -118,6 +118,9 @@ public class GameManager : MonoBehaviour
 
     IEnumerator StartDrying() {
 
+        cam1.SetActive(false);
+        cam2_dryer.SetActive(true);
+
         ringHolderAnimator.SetTrigger("bottleOut");
         brushAnimator.SetTrigger("moveBrushOut");
         bottleAnimator.SetTrigger("moveBottleOut");
@@ -129,7 +132,6 @@ public class GameManager : MonoBehaviour
 
         yield return new WaitForSeconds(1);
 
-        nailPolishBottle.SetActive(false);
 
         dryingMachineAnimator.gameObject.SetActive(true);
 
@@ -146,17 +148,18 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(3);
 
         ringMesh.material = matRough;
-        ringHolderAnimator.SetTrigger("dryOut");
-
-        yield return new WaitForSeconds(1);
-
         dryingMachineAnimator.SetTrigger("out");
 
         yield return new WaitForSeconds(1);
 
+        ringHolderAnimator.SetTrigger("dryOut");
 
-        cam1.SetActive(false);
-        cam2.SetActive(true);
+        yield return new WaitForSeconds(1);
+
+        nailPolishBottle.SetActive(false);
+
+        cam2_dryer.SetActive(false);
+        cam3.SetActive(true);
 
         sandingMachine.SetActive(true);
         IS_READY_FOR_INPUT = true;

@@ -14,6 +14,9 @@ public class ParticleTrigger : MonoBehaviour
     public GameManager gameManager;
     public SandingMachine sandingMachine;
 
+    [SerializeField]
+    private ParticleSystem debrif;
+
     public float glossiness;
 
     private void Start()
@@ -41,6 +44,8 @@ public class ParticleTrigger : MonoBehaviour
                 glossiness = .3f * count / totalNoUpperParticles;
                 gameManager.ringFinalOutput.material.SetFloat("_Glossiness", glossiness);
 
+                debrif.Play();
+
                 if (count >= totalNoUpperParticles)
                 {
                     GameManager.IS_READY_FOR_INPUT = false;
@@ -58,6 +63,8 @@ public class ParticleTrigger : MonoBehaviour
             {
                 glossiness = .3f * count / totalNoBottomParticles;
                 gameManager.ringFinalOutput.material.SetFloat("_Glossiness", glossiness + .3f);
+
+                debrif.Play();
 
                 if (count >= totalNoBottomParticles - 1)
                 {
