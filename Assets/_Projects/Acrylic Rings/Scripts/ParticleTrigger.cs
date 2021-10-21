@@ -46,8 +46,10 @@ public class ParticleTrigger : MonoBehaviour
 
                 debrif.Play();
 
-                if (count >= totalNoUpperParticles)
+                if (count >= totalNoUpperParticles - 5)
                 {
+                    count = 0;
+
                     GameManager.IS_READY_FOR_INPUT = false;
                     gameManager.SandingUpperDone();
                     sandingMachine.SandingDone();
@@ -55,7 +57,6 @@ public class ParticleTrigger : MonoBehaviour
                     Debug.Log("hhhh Upper part is done");
                     gameManager.isSandingUpperPart = false;
 
-                    count = 0;
                     upperRingPart.gameObject.SetActive(false);
 
                 }
@@ -66,7 +67,7 @@ public class ParticleTrigger : MonoBehaviour
 
                 debrif.Play();
 
-                if (count >= totalNoBottomParticles - 1)
+                if (count >= totalNoBottomParticles - 5)
                 {
                     GameManager.IS_READY_FOR_INPUT = false;
                     sandingMachine.SandingDone();
