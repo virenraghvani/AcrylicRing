@@ -53,6 +53,8 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         blobNo = 0;
+
+        Cursor.visible = false;
     }
 
     void Update()

@@ -43,7 +43,7 @@ public class ParticleTrigger : MonoBehaviour
 
             if (gameManager.isSandingUpperPart)
             {
-                glossiness = .3f * count / totalNoUpperParticles;
+                glossiness = .38f * count / totalNoUpperParticles;
                 gameManager.ringFinalOutput.material.SetFloat("_Glossiness", glossiness);
 
                 debrif.Play();
@@ -64,8 +64,8 @@ public class ParticleTrigger : MonoBehaviour
                 }
             }else
             {
-                glossiness = .3f * count / totalNoBottomParticles;
-                gameManager.ringFinalOutput.material.SetFloat("_Glossiness", glossiness + .3f);
+                glossiness = .38f * count / totalNoBottomParticles;
+                gameManager.ringFinalOutput.material.SetFloat("_Glossiness", glossiness + .38f);
 
                 debrif.Play();
 
