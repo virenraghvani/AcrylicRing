@@ -15,6 +15,8 @@ public class AccessoryStep : MonoBehaviour
     [SerializeField]
     private GameObject particleEffect2;
 
+    public GameManager gameManager;
+
     void Awake()
     {
         GameManager.IS_READY_FOR_INPUT = true;
@@ -47,6 +49,8 @@ public class AccessoryStep : MonoBehaviour
 
                 //vibration.TriggerHeavyImpact();
                 //AudioController.instance.PlayAudio(audioClip);
+
+                gameManager.OnAccessoryDone();
             }
         }
     }

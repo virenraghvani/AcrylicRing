@@ -46,7 +46,7 @@ public class ParticleTrigger : MonoBehaviour
 
                 debrif.Play();
 
-                if (count >= totalNoUpperParticles - 5)
+                if (count >= totalNoUpperParticles - 15)
                 {
                     count = 0;
 
@@ -67,7 +67,7 @@ public class ParticleTrigger : MonoBehaviour
 
                 debrif.Play();
 
-                if (count >= totalNoBottomParticles - 5)
+                if (count >= totalNoBottomParticles - 15)
                 {
                     GameManager.IS_READY_FOR_INPUT = false;
                     sandingMachine.SandingDone();

@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
     private int blobNo;
 
     [SerializeField]
-    private GameObject brush, blob1, dryingMachine, ringParts, ringFinal, nailPolishBottle, dottedLine, sandingMachine, accessoryStep;
+    private GameObject brush, blob1, dryingMachine, ringParts, ringFinal, nailPolishBottle, dottedLine, sandingMachine, accessoryStep, finalHand, finalConfetti;
 
     public MeshRenderer ringFinalOutput;
 
@@ -34,7 +34,7 @@ public class GameManager : MonoBehaviour
     private bool isAutoCompleting;
 
     [SerializeField]
-    private GameObject cam1, cam2_dryer, cam3;
+    private GameObject cam1, cam2_dryer, cam3, cam4_hand;
 
     public static bool IS_READY_FOR_INPUT;
 
@@ -216,5 +216,28 @@ public class GameManager : MonoBehaviour
     void DelayAccessoryStep()
     {
         accessoryStep.SetActive(true);
+    }
+
+    public void OnAccessoryDone()
+    {
+       
+
+        StartCoroutine(StartHandStep());
+    }
+
+    IEnumerator StartHandStep()
+    {
+        yield return new WaitForSeconds(1);
+
+        finalHand.SetActive(true);
+        cam4_hand.SetActive(true);
+
+        yield return new WaitForSeconds(3);
+
+        finalHand.GetComponent<Animator>().SetTrigger("fingereMove");
+
+        yield return new WaitForSeconds(1);
+
+        finalConfetti.SetActive(true);
     }
 }
