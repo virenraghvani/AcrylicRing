@@ -32,6 +32,8 @@ public class ParticleTrigger : MonoBehaviour
         if (other.CompareTag("particles"))
         {
             other.transform.parent = null;
+            other.transform.localScale = new Vector3(0.3f, 0.3f, 0.3f);
+
             other.GetComponent<BoxCollider>().enabled = false;
             other.GetComponent<Rigidbody>().isKinematic = false;
             other.GetComponent<Rigidbody>().velocity = new Vector3(Random.Range(0, 5), Random.Range(5, 25), Random.Range(0, 5));
