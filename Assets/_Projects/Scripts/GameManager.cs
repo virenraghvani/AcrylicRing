@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 public class GameManager : MonoBehaviour
 {
@@ -34,11 +35,14 @@ public class GameManager : MonoBehaviour
     private bool isAutoCompleting;
 
     [SerializeField]
-    private GameObject cam1, cam2_dryer, cam3, cam4_hand;
+    private GameObject cam1, cam2_dryer, cam3, cam4_hand, cam4_hand1, cam4_hand2;
 
     public static bool IS_READY_FOR_INPUT;
 
     public bool isSandingUpperPart;
+
+    [SerializeField]
+    private CinemachineBrain cinemachineBrain;
 
     private void Awake()
     {
@@ -53,8 +57,6 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         blobNo = 0;
-
-        Cursor.visible = false;
     }
 
     void Update()
@@ -231,10 +233,16 @@ public class GameManager : MonoBehaviour
     {
         yield return new WaitForSeconds(1);
 
+
+        cinemachineBrain.m_DefaultBlend.m_Time = 0;
+
         finalHand.SetActive(true);
-        cam4_hand.SetActive(true);
+        cam4_hand1.SetActive(true);
 
         yield return new WaitForSeconds(3);
+
+        cam4_hand1.SetActive(false);
+        cam4_hand2.SetActive(true);
 
         finalHand.GetComponent<Animator>().SetTrigger("fingereMove");
 
