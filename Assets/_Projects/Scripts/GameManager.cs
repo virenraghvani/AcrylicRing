@@ -5,18 +5,15 @@ using Cinemachine;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject [] blob;
-
     private int blobNo;
 
     [SerializeField]
-    private GameObject brush, blob1, dryingMachine, ringParts, ringFinal, nailPolishBottle, dottedLine, sandingMachine, accessoryStep, finalHand, finalConfetti;
+    private GameObject brush, blob1, dryingMachine, ringParts, ringFinal, nailPolishBottle, dottedLine, sandingMachine, accessoryStep, finalHand, finalConfetti, gameOverPanel;
 
     public MeshRenderer ringFinalOutput;
 
     [SerializeField]
-    private SkinnedMeshRenderer ringMesh;
+    private MeshRenderer ringMesh;
 
     [SerializeField]
     private Material matShine, matRough;
@@ -26,8 +23,6 @@ public class GameManager : MonoBehaviour
     public RotateCyclinder rotateCyclinder;
 
     public Animator brushAnimator, ringHolderAnimator, bottleAnimator, dryingMachineAnimator;
-
-    public RingBlendshapes ringBlendshapes;
 
     [SerializeField]
     private GameObject sandParticles;
@@ -44,6 +39,13 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private CinemachineBrain cinemachineBrain;
 
+    [SerializeField]
+    private GameObject pf_ring;
+
+    [SerializeField]
+    private Transform RingParent;
+    private GameObject currentRing;
+
     private void Awake()
     {
         ManipulateNailBlob.ProgressChanged += OnProgressChanged;
@@ -57,6 +59,8 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         blobNo = 0;
+
+        currentRing = Instantiate(pf_ring, RingParent);
     }
 
     void Update()
@@ -74,6 +78,23 @@ public class GameManager : MonoBehaviour
 
             Invoke("BrushMoveDelay", 0.5f);
         }
+
+        //RaycastHit hit;
+        //int layerMask = 1 << 8;
+        //layerMask = ~layerMask;
+
+        //if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity, layerMask))
+        //{
+        //    Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);
+        //    Debug.Log("Did Hit");
+
+        //    transform.position = hit.point;
+        //}
+        //else
+        //{
+        //    Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * 1000, Color.white);
+        //    Debug.Log("Did not Hit");
+        //}
     }
 
     public void OnProgressChanged(float percentage)
@@ -99,10 +120,9 @@ public class GameManager : MonoBehaviour
 
     void BrushMoveDelay()
     {
-        blob[blobNo - 1].GetComponent<ManipulateNailBlob>().enabled = false;
+        currentRing.GetComponent<RingData>().blob[blobNo - 1].GetComponent<ManipulateNailBlob>().enabled = false;
         isAutoCompleting = false;
         brushAnimator.Play("Brush", -1, 0f);
-
     }
 
     public void OnTinEntered()
@@ -114,7 +134,7 @@ public class GameManager : MonoBehaviour
     public void OnBrushPlaced()
     {
         // Activate Blob
-        blob[blobNo].SetActive(true);
+        currentRing.GetComponent<RingData>().blob[blobNo].SetActive(true);
 
         dottedLine.SetActive(true);
         IS_READY_FOR_INPUT = true;
@@ -130,9 +150,6 @@ public class GameManager : MonoBehaviour
         bottleAnimator.SetTrigger("moveBottleOut");
 
         yield return new WaitForSeconds(.12f);
-
-      
-
 
         yield return new WaitForSeconds(1);
 
@@ -169,25 +186,6 @@ public class GameManager : MonoBehaviour
         IS_READY_FOR_INPUT = true;
 
         ringHolderAnimator.enabled = false;
-        ringBlendshapes.startBlendShape = true;
-
-        sandParticles.SetActive(true);
-    }
-
-
-    IEnumerator MoveRingOut()
-    {
-        ringHolderAnimator.SetTrigger("removeRing");
-        brushAnimator.SetTrigger("moveBrushOut");
-        bottleAnimator.SetTrigger("moveBottleOut");
-
-        yield return new WaitForSeconds(2);
-
-        sandingMachine.SetActive(true);
-
-        ringHolderAnimator.enabled = false;
-        ringBlendshapes.startBlendShape = true;
-
         sandParticles.SetActive(true);
     }
 
@@ -249,5 +247,25 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(1);
 
         finalConfetti.SetActive(true);
+
+        gameOverPanel.SetActive(true);
+
+    }
+
+    public void NextLevel()
+    {
+        blobNo = 0;
+        gameOverPanel.SetActive(false);
+
+        ringHolderAnimator.enabled = true;
+        ringHolderAnimator.SetTrigger("reset");
+        brushAnimator.SetTrigger("moveBrushIn");
+        bottleAnimator.SetTrigger("reset");
+
+        nailPolishBottle.SetActive(true);
+
+
+        cam4_hand2.SetActive(false);
+        cam1.SetActive(true);
     }
 }
