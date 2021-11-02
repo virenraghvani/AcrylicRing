@@ -61,6 +61,7 @@ public class GameManager : MonoBehaviour
         blobNo = 0;
 
         currentRing = Instantiate(pf_ring, RingParent);
+        currentRing.name = "Ring";
     }
 
     void Update()
@@ -185,7 +186,7 @@ public class GameManager : MonoBehaviour
         sandingMachine.SetActive(true);
         IS_READY_FOR_INPUT = true;
 
-        ringHolderAnimator.enabled = false;
+     //   ringHolderAnimator.enabled = false;
         sandParticles.SetActive(true);
     }
 

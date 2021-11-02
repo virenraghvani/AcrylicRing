@@ -394,10 +394,7 @@ public class ManipulateNailBlob : MonoBehaviour
             sum += _pointsNormalizedPos[i].y;
         }
 
-        Debug.Log("gggg " + sum / _pointsNormalizedPos.Count);
-
         return sum / _pointsNormalizedPos.Count;
-
     }
 
     public void CompleteNail()
