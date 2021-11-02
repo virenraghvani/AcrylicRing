@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour
     public MeshRenderer ringFinalOutput;
 
     [SerializeField]
-    private Material matShine, matRough;
+    private Material matShine, matRough, matTinSides, matTinBorder, matTinSurface;
 
     public MoveTool moveTool;
 
@@ -298,12 +298,25 @@ public class GameManager : MonoBehaviour
     {
         Material mat = new Material(Resources.Load("Prefabs/PowderColor/" + index, typeof(Material)) as Material);
 
-        matRough.CopyPropertiesFromMaterial(mat);
-        matShine.CopyPropertiesFromMaterial(mat);
-
-        matRough.SetFloat("_Glossiness", 0);
-
+        ChangeAllMaterials(mat);
         SpawnRing();
 
+    }
+
+    void ChangeAllMaterials(Material mat)
+    {
+        matRough.CopyPropertiesFromMaterial(mat);
+        matShine.CopyPropertiesFromMaterial(mat);
+        matRough.SetFloat("_Glossiness", 0);
+
+
+        matTinBorder.CopyPropertiesFromMaterial(mat);
+        matRough.SetFloat("_Glossiness", 0.764f);
+        
+        matTinSides.CopyPropertiesFromMaterial(mat);
+        matRough.SetFloat("_Glossiness", 0.764f);
+
+        matTinSurface.CopyPropertiesFromMaterial(mat);
+        matRough.SetFloat("_Glossiness", 0.55f);
     }
 }
