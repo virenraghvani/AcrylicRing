@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour
     public MeshRenderer ringFinalOutput;
 
     [SerializeField]
-    private SkinnedMeshRenderer ringMesh;
+    private MeshRenderer ringMesh;
 
     [SerializeField]
     private Material matShine, matRough;
