@@ -7,9 +7,7 @@ public class ParticleTrigger : MonoBehaviour
 
     private int count;
 
-    [SerializeField]
     private Transform upperRingPart, bottomRingPart;
-
 
     public GameManager gameManager;
     public SandingMachine sandingMachine;
@@ -21,6 +19,9 @@ public class ParticleTrigger : MonoBehaviour
 
     private void Start()
     {
+        upperRingPart = gameManager.currentRing.GetComponent<RingData>().upperRingPart;
+        bottomRingPart = gameManager.currentRing.GetComponent<RingData>().bottomRingPart;
+
         totalNoUpperParticles = upperRingPart.childCount - 1;
         totalNoBottomParticles = bottomRingPart.childCount - 1;
 

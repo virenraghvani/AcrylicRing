@@ -54,7 +54,7 @@ public class ManipulateNailBlob : MonoBehaviour
     [SerializeField] private AnimationCurve _retractionForceToDistance;
     private float _retractionTimer;
 
-    private float _autocompletePercentage = 0.5f;
+    private float _autocompletePercentage = 0.3f;
     private float _autocompleteSpeed = 0.5f;
     private bool _isAutocompleting = false;
 
@@ -76,9 +76,15 @@ public class ManipulateNailBlob : MonoBehaviour
     //  public AudioSource audioSource;
     public AudioClip audioClip;
 
+    private GameManager gameManager;
 
     private void Start()
     {
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+
+        _toolRaycastPoint = gameManager.toolRayCast;
+        _marker = gameManager.marker;
+
         InitDictionaries();
         _marker.localScale = Vector3.one * _radius;
         _hapticEnabled = true;

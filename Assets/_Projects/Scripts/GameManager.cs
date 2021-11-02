@@ -8,12 +8,9 @@ public class GameManager : MonoBehaviour
     private int blobNo;
 
     [SerializeField]
-    private GameObject brush, blob1, dryingMachine, ringParts, ringFinal, nailPolishBottle, dottedLine, sandingMachine, accessoryStep, finalHand, finalConfetti, gameOverPanel;
+    private GameObject brush, dryingMachine, nailPolishBottle, dottedLine, sandingMachine, accessoryStep, finalHand, finalConfetti, gameOverPanel;
 
     public MeshRenderer ringFinalOutput;
-
-    [SerializeField]
-    private MeshRenderer ringMesh;
 
     [SerializeField]
     private Material matShine, matRough;
@@ -44,7 +41,10 @@ public class GameManager : MonoBehaviour
 
     [SerializeField]
     private Transform RingParent;
-    private GameObject currentRing;
+
+    public GameObject currentRing;
+
+    public Transform toolRayCast, marker;
 
     private void Awake()
     {
@@ -162,13 +162,13 @@ public class GameManager : MonoBehaviour
 
         yield return new WaitForSeconds(2);
 
-        ringFinal.SetActive(true);
-        ringParts.SetActive(false);
+        currentRing.GetComponent<RingData>().ringFinal.SetActive(true);
+        currentRing.GetComponent<RingData>().ringParts.SetActive(false);
 
 
         yield return new WaitForSeconds(3);
 
-        ringMesh.material = matRough;
+        currentRing.GetComponent<RingData>().ringMesh.material = matRough;
         dryingMachineAnimator.SetTrigger("out");
 
         yield return new WaitForSeconds(1);

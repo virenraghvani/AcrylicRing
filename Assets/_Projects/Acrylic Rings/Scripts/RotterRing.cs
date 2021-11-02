@@ -7,6 +7,11 @@ public class RotterRing : MonoBehaviour
     public float rotSpeed;
     public GameManager gameManager;
 
+    private void Start()
+    {
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+    }
+
     void Update()
     {
         if(gameManager.isSandingUpperPart)
