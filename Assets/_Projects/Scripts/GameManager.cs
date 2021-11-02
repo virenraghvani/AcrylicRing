@@ -14,7 +14,10 @@ public class GameManager : MonoBehaviour
     public MeshRenderer ringFinalOutput;
 
     [SerializeField]
-    private Material matShine, matRough, matTinSides, matTinBorder, matTinSurface;
+    private Material matShine, matRough, matFinalHand, matTinSides, matTinBorder, matTinSurface;
+
+    [SerializeField]
+    private Texture normalMap;
 
     public MoveTool moveTool;
 
@@ -307,16 +310,22 @@ public class GameManager : MonoBehaviour
     {
         matRough.CopyPropertiesFromMaterial(mat);
         matShine.CopyPropertiesFromMaterial(mat);
+        matFinalHand.CopyPropertiesFromMaterial(mat);
+
         matRough.SetFloat("_Glossiness", 0);
+        matFinalHand.SetFloat("_Glossiness", 0.76f);
 
 
         matTinBorder.CopyPropertiesFromMaterial(mat);
-        matRough.SetFloat("_Glossiness", 0.764f);
+        matTinBorder.SetFloat("_Glossiness", 0.76f);
         
         matTinSides.CopyPropertiesFromMaterial(mat);
-        matRough.SetFloat("_Glossiness", 0.764f);
+        matTinSides.SetFloat("_Glossiness", 0.76f);
 
         matTinSurface.CopyPropertiesFromMaterial(mat);
-        matRough.SetFloat("_Glossiness", 0.55f);
+        matTinSurface.SetFloat("_Glossiness", 0.55f);
+        matTinSurface.SetTexture("_BumpMap", normalMap);
+        matTinSurface.SetFloat("_BumpScale", 0.55f);
+
     }
 }
