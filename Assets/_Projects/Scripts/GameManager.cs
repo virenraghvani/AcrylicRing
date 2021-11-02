@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private GameObject brush, dryingMachine, nailPolishBottle, dottedLine, sandingMachine, accessoryStep, finalHand, finalConfetti, gameOverPanel;
 
+    [HideInInspector]
     public MeshRenderer ringFinalOutput;
 
     [SerializeField]
@@ -62,6 +63,8 @@ public class GameManager : MonoBehaviour
 
         currentRing = Instantiate(pf_ring, RingParent);
         currentRing.name = "Ring";
+
+        ringFinalOutput = currentRing.GetComponent<RingData>().ringMesh;
     }
 
     void Update()

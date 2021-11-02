@@ -30,58 +30,73 @@ public class ParticleTrigger : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("particles"))
+        if (gameManager.isSandingUpperPart)
         {
-            other.transform.parent = null;
-            other.transform.localScale = new Vector3(0.3f, 0.3f, 0.3f);
-
-            other.GetComponent<BoxCollider>().enabled = false;
-            other.GetComponent<Rigidbody>().isKinematic = false;
-            other.GetComponent<Rigidbody>().velocity = new Vector3(Random.Range(0, 5), Random.Range(5, 25), Random.Range(0, 5));
-            Destroy(other.gameObject, 3);
-
-            count++;
-
-            if (gameManager.isSandingUpperPart)
+            if (other.CompareTag("particles_upper"))
             {
-                glossiness = .38f * count / totalNoUpperParticles;
-                gameManager.ringFinalOutput.material.SetFloat("_Glossiness", glossiness);
+                other.transform.parent = null;
+                other.transform.localScale = new Vector3(0.3f, 0.3f, 0.3f);
 
-                debrif.Play();
+                other.GetComponent<BoxCollider>().enabled = false;
+                other.GetComponent<Rigidbody>().isKinematic = false;
+                other.GetComponent<Rigidbody>().velocity = new Vector3(Random.Range(0, 5), Random.Range(5, 25), Random.Range(0, 5));
+                Destroy(other.gameObject, 3);
 
-                if (count >= totalNoUpperParticles - 15)
-                {
-                    count = 0;
+                count++;
+            }
 
-                    GameManager.IS_READY_FOR_INPUT = false;
-                    gameManager.SandingUpperDone();
-                    sandingMachine.SandingDone();
+            glossiness = .38f * count / totalNoUpperParticles;
+            gameManager.ringFinalOutput.material.SetFloat("_Glossiness", glossiness);
 
-                    Debug.Log("hhhh Upper part is done");
-                    gameManager.isSandingUpperPart = false;
+            debrif.Play();
 
-                    upperRingPart.gameObject.SetActive(false);
-
-                }
-            }else
+            if (count >= totalNoUpperParticles - 15)
             {
-                glossiness = .38f * count / totalNoBottomParticles;
-                gameManager.ringFinalOutput.material.SetFloat("_Glossiness", glossiness + .38f);
+                count = 0;
 
-                debrif.Play();
+                GameManager.IS_READY_FOR_INPUT = false;
+                gameManager.SandingUpperDone();
+                sandingMachine.SandingDone();
 
-                if (count >= totalNoBottomParticles - 15)
-                {
-                    GameManager.IS_READY_FOR_INPUT = false;
-                    sandingMachine.SandingDone();
-                    gameManager.SandingBottomDone();
+                Debug.Log("hhhh Upper part is done");
+                gameManager.isSandingUpperPart = false;
 
-                    bottomRingPart.gameObject.SetActive(false);
+                upperRingPart.gameObject.SetActive(false);
 
-                    Debug.Log("hhhh Bottom part is done");
+            }
+        }else
+        {
 
-                }
+            if (other.CompareTag("particles_bottom"))
+            {
+                other.transform.parent = null;
+                other.transform.localScale = new Vector3(0.3f, 0.3f, 0.3f);
+
+                other.GetComponent<BoxCollider>().enabled = false;
+                other.GetComponent<Rigidbody>().isKinematic = false;
+                other.GetComponent<Rigidbody>().velocity = new Vector3(Random.Range(0, 5), Random.Range(5, 25), Random.Range(0, 5));
+                Destroy(other.gameObject, 3);
+
+                count++;
+            }
+
+            glossiness = .38f * count / totalNoBottomParticles;
+            gameManager.ringFinalOutput.material.SetFloat("_Glossiness", glossiness + .38f);
+
+            debrif.Play();
+
+            if (count >= totalNoBottomParticles - 15)
+            {
+                GameManager.IS_READY_FOR_INPUT = false;
+                sandingMachine.SandingDone();
+                gameManager.SandingBottomDone();
+
+                bottomRingPart.gameObject.SetActive(false);
+
+                Debug.Log("hhhh Bottom part is done");
+
             }
         }
+        
     }
 }
