@@ -66,10 +66,7 @@ public class GameManager : MonoBehaviour
 
     void SpawnRing()
     {
-        cinemachineBrain.m_DefaultBlend.m_Time = 1;
-
-        Destroy(currentRing);
-
+      
         blobNo = 0;
         isAutoCompleting = false;
         currentRing = Instantiate(pf_ring, RingParent);
@@ -77,7 +74,6 @@ public class GameManager : MonoBehaviour
 
         ringFinalOutput = currentRing.GetComponent<RingData>().ringMesh;
 
-        brush.SetActive(true);
         powderTinAnimator.gameObject.SetActive(true);
     }
 
@@ -281,12 +277,10 @@ public class GameManager : MonoBehaviour
         cam4_hand2.SetActive(false);
         cam1.SetActive(true);
 
-        SpawnRing();
+        powderSelectionPanel.SetActive(true);
 
         gameOverPanel.SetActive(false);
         accessoryStep.SetActive(false);
-        brush.SetActive(true);
-        powderTinAnimator.gameObject.SetActive(true);
 
         ringHolderAnimator.transform.GetChild(0).localRotation = Quaternion.identity;
         ringHolderAnimator.enabled = true;
@@ -294,6 +288,10 @@ public class GameManager : MonoBehaviour
         //   brushAnimator.SetTrigger("moveBrushIn");
 
         nailPolishBottle.SetActive(true);
+
+        cinemachineBrain.m_DefaultBlend.m_Time = 1;
+        Destroy(currentRing);
+
     }
 
     public void OnPowderSelection(int index)
