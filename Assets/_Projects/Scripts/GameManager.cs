@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
     private int blobNo;
 
     [SerializeField]
-    private GameObject brush, nailPolishBottle, dottedLine, sandingMachine, accessoryStep, finalHand, finalConfetti, gameOverPanel;
+    private GameObject brush, nailPolishBottle, dottedLine, sandingMachine, accessoryStep, finalHand, finalConfetti, gameOverPanel, powderSelectionPanel;
 
     [HideInInspector]
     public MeshRenderer ringFinalOutput;
@@ -59,7 +59,9 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        SpawnRing();
+        //  SpawnRing();
+        powderSelectionPanel.SetActive(true);
+
     }
 
     void SpawnRing()
@@ -74,6 +76,9 @@ public class GameManager : MonoBehaviour
         currentRing.name = "Ring";
 
         ringFinalOutput = currentRing.GetComponent<RingData>().ringMesh;
+
+        brush.SetActive(true);
+        powderTinAnimator.gameObject.SetActive(true);
     }
 
     void Update()
@@ -289,8 +294,18 @@ public class GameManager : MonoBehaviour
         //   brushAnimator.SetTrigger("moveBrushIn");
 
         nailPolishBottle.SetActive(true);
+    }
 
+    public void OnPowderSelection(int index)
+    {
+        Material mat = new Material(Resources.Load("Prefabs/PowderColor/" + index, typeof(Material)) as Material);
 
-     
+        matRough.CopyPropertiesFromMaterial(mat);
+        matShine.CopyPropertiesFromMaterial(mat);
+
+        matRough.SetFloat("_Glossiness", 0);
+
+        SpawnRing();
+
     }
 }
