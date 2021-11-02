@@ -20,7 +20,7 @@ public class PowderSelectionPanel : MonoBehaviour
 
         GameObject obj;
 
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < 5; i++)
         {
             obj = Instantiate(pf_powder, content_powder.transform);
             obj.transform.Find("id").GetComponent<Text>().text = i.ToString();

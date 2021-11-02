@@ -300,11 +300,15 @@ public class GameManager : MonoBehaviour
     public void OnPowderSelection(int index)
     {
         Material mat = new Material(Resources.Load("Prefabs/PowderColor/" + index, typeof(Material)) as Material);
-
         ChangeAllMaterials(mat);
         SpawnRing();
+    }
+
+    public void OnAccessorySelection(int index)
+    {
 
     }
+
 
     void ChangeAllMaterials(Material mat)
     {

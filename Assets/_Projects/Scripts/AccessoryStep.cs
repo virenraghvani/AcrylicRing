@@ -10,12 +10,17 @@ public class AccessoryStep : MonoBehaviour
     private Transform startPos, targetPos;
 
     [SerializeField]
-    private GameObject accessory;
+    private GameObject [] accessory;
 
     [SerializeField]
     private GameObject sparkle, particleParent;
 
     public GameManager gameManager;
+
+    [SerializeField]
+    private GameObject accessorySelectionPanel;
+
+    private int selectedAccessoryIndex;
 
     void Awake()
     {
@@ -25,12 +30,21 @@ public class AccessoryStep : MonoBehaviour
 
     private void OnEnable()
     {
-        GameManager.IS_READY_FOR_INPUT = true;
+        accessorySelectionPanel.SetActive(true);
 
         isTargetFound = false;
         isPlaced = false;
-        accessory.transform.position = startPos.position;
    
+    }
+
+    public void OnAccessorySelection(int index)
+    {
+        selectedAccessoryIndex = index;
+        accessory[index].SetActive(true);
+        accessory[index].transform.position = startPos.position;
+
+        GameManager.IS_READY_FOR_INPUT = true;
+
     }
 
     void Move(Vector2 pos)
@@ -50,9 +64,9 @@ public class AccessoryStep : MonoBehaviour
         if (isTargetFound && !isPlaced)
         {
             // Learp
-            accessory.transform.position = Vector3.Lerp(accessory.transform.position, targetPos.transform.position, 10 * Time.deltaTime);
+            accessory[selectedAccessoryIndex].transform.position = Vector3.Lerp(accessory[selectedAccessoryIndex].transform.position, targetPos.transform.position, 10 * Time.deltaTime);
 
-            if (Vector3.Distance(accessory.transform.position, targetPos.transform.position) < .01f)
+            if (Vector3.Distance(accessory[selectedAccessoryIndex].transform.position, targetPos.transform.position) < .01f)
             {
                 isPlaced = true;
                 //Invoke("DelayAccessoryPlaced", 2);
