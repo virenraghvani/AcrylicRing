@@ -251,6 +251,7 @@ public class GameManager : MonoBehaviour
 
         finalHand.SetActive(true);
         cam4_hand1.SetActive(true);
+        cam3.SetActive(false);
 
         yield return new WaitForSeconds(3);
 

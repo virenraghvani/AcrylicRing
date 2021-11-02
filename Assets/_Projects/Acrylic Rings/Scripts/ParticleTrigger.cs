@@ -19,6 +19,7 @@ public class ParticleTrigger : MonoBehaviour
 
     private void OnEnable()
     {
+        count = 0;
         upperRingPart = gameManager.currentRing.GetComponent<RingData>().upperRingPart;
         bottomRingPart = gameManager.currentRing.GetComponent<RingData>().bottomRingPart;
 
