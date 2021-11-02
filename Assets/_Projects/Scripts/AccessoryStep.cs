@@ -13,7 +13,7 @@ public class AccessoryStep : MonoBehaviour
     private GameObject accessory;
 
     [SerializeField]
-    private GameObject particleEffect2;
+    private GameObject sparkle, particleParent;
 
     public GameManager gameManager;
 
@@ -23,6 +23,16 @@ public class AccessoryStep : MonoBehaviour
         InputManager.inst.OnDragCallback += Move;
     }
 
+    private void OnEnable()
+    {
+        GameManager.IS_READY_FOR_INPUT = true;
+
+        isTargetFound = false;
+        isPlaced = false;
+        accessory.transform.position = startPos.position;
+   
+    }
+
     void Move(Vector2 pos)
     {
         if (isTargetFound)
@@ -30,6 +40,7 @@ public class AccessoryStep : MonoBehaviour
 
         isTargetFound = true;
 
+        Debug.Log("move");
         //LeanTween.move(accessory, targetPos.transform.position, .3f);
 
     }
@@ -45,7 +56,8 @@ public class AccessoryStep : MonoBehaviour
             {
                 isPlaced = true;
                 //Invoke("DelayAccessoryPlaced", 2);
-                particleEffect2.SetActive(true);
+
+                Instantiate(sparkle, particleParent.transform);
 
                 //vibration.TriggerHeavyImpact();
                 //AudioController.instance.PlayAudio(audioClip);

@@ -17,7 +17,7 @@ public class ParticleTrigger : MonoBehaviour
 
     public float glossiness;
 
-    private void Start()
+    private void OnEnable()
     {
         upperRingPart = gameManager.currentRing.GetComponent<RingData>().upperRingPart;
         bottomRingPart = gameManager.currentRing.GetComponent<RingData>().bottomRingPart;

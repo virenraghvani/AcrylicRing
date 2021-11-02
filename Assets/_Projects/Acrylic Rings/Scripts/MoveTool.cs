@@ -15,6 +15,7 @@ public class MoveTool : MonoBehaviour
 
     private void Awake()
     {
+
         InputManager.inst.OnClickCallback += StartMove;
         InputManager.inst.OnDragCallback  += Move;
 
@@ -23,6 +24,10 @@ public class MoveTool : MonoBehaviour
         startPos = transform.localPosition;
     }
 
+    private void OnEnable()
+    {
+        moveToDefaultPos = true;
+    }
     private void StartMove(Vector2 startPos)
     {
         _lastPos = Camera.main.ScreenToWorldPoint(new Vector3(startPos.x, startPos.y, _camDist));

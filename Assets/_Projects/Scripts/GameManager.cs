@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
     private int blobNo;
 
     [SerializeField]
-    private GameObject brush, dryingMachine, nailPolishBottle, dottedLine, sandingMachine, accessoryStep, finalHand, finalConfetti, gameOverPanel;
+    private GameObject brush, nailPolishBottle, dottedLine, sandingMachine, accessoryStep, finalHand, finalConfetti, gameOverPanel;
 
     [HideInInspector]
     public MeshRenderer ringFinalOutput;
@@ -59,8 +59,17 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        blobNo = 0;
+        SpawnRing();
+    }
 
+    void SpawnRing()
+    {
+        cinemachineBrain.m_DefaultBlend.m_Time = 1;
+
+        Destroy(currentRing);
+
+        blobNo = 0;
+        isAutoCompleting = false;
         currentRing = Instantiate(pf_ring, RingParent);
         currentRing.name = "Ring";
 
@@ -157,7 +166,7 @@ public class GameManager : MonoBehaviour
 
         yield return new WaitForSeconds(1);
 
-
+        brush.SetActive(false);
         dryingMachineAnimator.gameObject.SetActive(true);
 
         yield return new WaitForSeconds(.1f);
@@ -180,6 +189,8 @@ public class GameManager : MonoBehaviour
         ringHolderAnimator.SetTrigger("dryOut");
 
         yield return new WaitForSeconds(1);
+
+        dryingMachineAnimator.gameObject.SetActive(false);
 
         nailPolishBottle.SetActive(false);
 
@@ -258,9 +269,18 @@ public class GameManager : MonoBehaviour
 
     public void NextLevel()
     {
-        blobNo = 0;
-        gameOverPanel.SetActive(false);
+        finalHand.SetActive(false);
 
+        cam4_hand2.SetActive(false);
+        cam1.SetActive(true);
+
+        SpawnRing();
+
+        gameOverPanel.SetActive(false);
+        accessoryStep.SetActive(false);
+        brush.SetActive(true);
+
+        ringHolderAnimator.transform.GetChild(0).localRotation = Quaternion.identity;
         ringHolderAnimator.enabled = true;
         ringHolderAnimator.SetTrigger("reset");
         brushAnimator.SetTrigger("moveBrushIn");
@@ -269,7 +289,6 @@ public class GameManager : MonoBehaviour
         nailPolishBottle.SetActive(true);
 
 
-        cam4_hand2.SetActive(false);
-        cam1.SetActive(true);
+     
     }
 }
