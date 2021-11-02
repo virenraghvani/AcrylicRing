@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
 using Cinemachine;
 
 public class GameManager : MonoBehaviour
@@ -50,6 +52,14 @@ public class GameManager : MonoBehaviour
 
     public Transform toolRayCast, marker;
 
+    public int currentLevel;
+
+    [SerializeField]
+    private Image img_customerRequest;
+
+    [SerializeField]
+    private Sprite[] customerRequests;
+
     private void Awake()
     {
         ManipulateNailBlob.ProgressChanged += OnProgressChanged;
@@ -65,11 +75,15 @@ public class GameManager : MonoBehaviour
         //  SpawnRing();
         powderSelectionPanel.SetActive(true);
 
+        currentLevel = PlayerPrefs.GetInt("level", 0);
+
+        img_customerRequest.sprite = customerRequests[currentLevel % 5];
     }
 
     void SpawnRing()
     {
-      
+    
+
         blobNo = 0;
         isAutoCompleting = false;
         currentRing = Instantiate(pf_ring, RingParent);
@@ -294,6 +308,10 @@ public class GameManager : MonoBehaviour
 
         cinemachineBrain.m_DefaultBlend.m_Time = 1;
         Destroy(currentRing);
+
+        currentLevel++;
+        PlayerPrefs.SetInt("level", currentLevel);
+        img_customerRequest.sprite = customerRequests[currentLevel % 5];
 
     }
 

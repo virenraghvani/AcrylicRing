@@ -22,11 +22,11 @@ public class AccessorySelectionPanel : MonoBehaviour
 
         GameObject obj;
 
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < 3; i++)
         {
             obj = Instantiate(pf_accessory, content_accessory.transform);
             obj.transform.Find("id").GetComponent<Text>().text = i.ToString();
-            obj.transform.Find("img").GetComponent<Image>().sprite = Resources.Load("Prefabs/PowderTins/" + i, typeof(Sprite)) as Sprite;
+            obj.transform.Find("img").GetComponent<Image>().sprite = Resources.Load("Prefabs/AccessoryIcons/" + i, typeof(Sprite)) as Sprite;
         }
     }
 

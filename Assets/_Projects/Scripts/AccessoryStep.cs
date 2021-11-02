@@ -10,7 +10,7 @@ public class AccessoryStep : MonoBehaviour
     private Transform startPos, targetPos;
 
     [SerializeField]
-    private GameObject [] accessory;
+    private GameObject [] accessory, onHandAccessories;
 
     [SerializeField]
     private GameObject sparkle, particleParent;
@@ -21,6 +21,7 @@ public class AccessoryStep : MonoBehaviour
     private GameObject accessorySelectionPanel;
 
     private int selectedAccessoryIndex;
+
 
     void Awake()
     {
@@ -34,7 +35,12 @@ public class AccessoryStep : MonoBehaviour
 
         isTargetFound = false;
         isPlaced = false;
-   
+
+        for (int i = 0; i < 3; i++)
+        {
+            accessory[i].SetActive(false);
+            onHandAccessories[i].SetActive(false);
+        }
     }
 
     public void OnAccessorySelection(int index)
@@ -42,6 +48,8 @@ public class AccessoryStep : MonoBehaviour
         selectedAccessoryIndex = index;
         accessory[index].SetActive(true);
         accessory[index].transform.position = startPos.position;
+
+        onHandAccessories[index].SetActive(true);
 
         GameManager.IS_READY_FOR_INPUT = true;
 
