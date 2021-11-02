@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour
 
     public RotateCyclinder rotateCyclinder;
 
-    public Animator brushAnimator, ringHolderAnimator, bottleAnimator, dryingMachineAnimator;
+    public Animator brushAnimator, ringHolderAnimator, powderTinAnimator, dryingMachineAnimator;
 
     [SerializeField]
     private GameObject sandParticles;
@@ -160,7 +160,7 @@ public class GameManager : MonoBehaviour
 
         ringHolderAnimator.SetTrigger("bottleOut");
         brushAnimator.SetTrigger("moveBrushOut");
-        bottleAnimator.SetTrigger("moveBottleOut");
+        powderTinAnimator.SetTrigger("moveBottleOut");
 
         yield return new WaitForSeconds(.12f);
 
@@ -168,6 +168,7 @@ public class GameManager : MonoBehaviour
 
         brush.SetActive(false);
         dryingMachineAnimator.gameObject.SetActive(true);
+        powderTinAnimator.gameObject.SetActive(false);
 
         yield return new WaitForSeconds(.1f);
 
@@ -280,12 +281,12 @@ public class GameManager : MonoBehaviour
         gameOverPanel.SetActive(false);
         accessoryStep.SetActive(false);
         brush.SetActive(true);
+        powderTinAnimator.gameObject.SetActive(true);
 
         ringHolderAnimator.transform.GetChild(0).localRotation = Quaternion.identity;
         ringHolderAnimator.enabled = true;
         ringHolderAnimator.SetTrigger("reset");
-        brushAnimator.SetTrigger("moveBrushIn");
-        bottleAnimator.SetTrigger("reset");
+        //   brushAnimator.SetTrigger("moveBrushIn");
 
         nailPolishBottle.SetActive(true);
 

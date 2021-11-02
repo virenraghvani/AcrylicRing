@@ -15,6 +15,6 @@ public class BrushAnim : MonoBehaviour
 
     public void OnBrushDipped()
     {
-        gameManager.bottleAnimator.SetTrigger("onBrushDipped");
+        gameManager.powderTinAnimator.SetTrigger("onBrushDipped");
     }
 }
