@@ -60,6 +60,9 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private Sprite[] customerRequests;
 
+    [SerializeField]
+    private GameObject [] endMessages;
+
     private void Awake()
     {
         ManipulateNailBlob.ProgressChanged += OnProgressChanged;
@@ -173,6 +176,8 @@ public class GameManager : MonoBehaviour
 
     IEnumerator StartDrying() {
 
+        endMessages[Random.Range(0, 6)].SetActive(true);
+
         cam1.SetActive(false);
         cam2_dryer.SetActive(true);
 
@@ -235,6 +240,8 @@ public class GameManager : MonoBehaviour
 
     public void SandingBottomDone()
     {
+        endMessages[Random.Range(0, 6)].SetActive(true);
+
         ringHolderAnimator.enabled = true;
         ringHolderAnimator.SetTrigger("accessoryPos");
 
