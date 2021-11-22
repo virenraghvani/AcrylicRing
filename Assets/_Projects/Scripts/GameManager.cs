@@ -7,6 +7,8 @@ using Cinemachine;
 
 public class GameManager : MonoBehaviour
 {
+    public bool onDryingMachine_bool, onAccessory_bool;
+
     private int blobNo;
 
     [SerializeField]
@@ -190,13 +192,16 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(1);
 
         brush.SetActive(false);
-        dryingMachineAnimator.gameObject.SetActive(true);
+
+        if(onDryingMachine_bool)
+            dryingMachineAnimator.gameObject.SetActive(true);
+
         powderTinAnimator.gameObject.SetActive(false);
 
         yield return new WaitForSeconds(.1f);
-
+        
         ringHolderAnimator.SetTrigger("dryIn");
-
+        
         yield return new WaitForSeconds(2);
 
         currentRing.GetComponent<RingData>().ringFinal.SetActive(true);
@@ -206,15 +211,21 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(3);
 
         currentRing.GetComponent<RingData>().ringMesh.material = matRough;
-        dryingMachineAnimator.SetTrigger("out");
 
-        yield return new WaitForSeconds(1);
+        if (onDryingMachine_bool)
+        {
+            dryingMachineAnimator.SetTrigger("out");
 
-        ringHolderAnimator.SetTrigger("dryOut");
+            yield return new WaitForSeconds(1);
+        }
+            ringHolderAnimator.SetTrigger("dryOut");
 
-        yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(1);
 
-        dryingMachineAnimator.gameObject.SetActive(false);
+        if (onDryingMachine_bool)
+        {
+            dryingMachineAnimator.gameObject.SetActive(false);
+        }
 
         nailPolishBottle.SetActive(false);
 
@@ -247,7 +258,10 @@ public class GameManager : MonoBehaviour
 
         sandingMachine.SetActive(false);
 
-        Invoke("DelayAccessoryStep", 1);
+        if(onAccessory_bool)
+            Invoke("DelayAccessoryStep", 1);
+        else
+            StartCoroutine(StartHandStep());
     }
 
     void ReadyForSandingBottomPart()
