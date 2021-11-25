@@ -7,7 +7,7 @@ public class SandingMachine : MonoBehaviour
     [SerializeField]
     private Animator animator;
 
-    void Awake()
+    void Start()
     {
         InputManager.inst.OnClickCallback += StartMove;
         InputManager.inst.OnDragCallback += Move;

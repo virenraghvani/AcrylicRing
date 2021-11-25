@@ -24,18 +24,19 @@ public class InputManager : MonoBehaviour
 
     private void Awake()
     {
-        #region Singelton
-        if (inst == null)
-        {
-            inst = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Debug.LogWarning("More then one InputManager was created, destroying duplicates");
-            Destroy(this);
-        }
-        #endregion
+        inst = this;
+        ///#region Singelton
+        ///if (inst == null)
+        ///{
+        ///    inst = this;
+        ///    DontDestroyOnLoad(gameObject);
+        ///}
+        ///else
+        ///{
+        ///    Debug.LogWarning("More then one InputManager was created, destroying duplicates");
+        ///    Destroy(this);
+        ///}
+        ///#endregion
     }
 
     void Update()

@@ -4,5 +4,32 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/_Projects/Acrylic Rings/Scene/mainMenu_scene.unity
+    guid: 05c85c64c984f71428611fac99c64a57
+  - enabled: 1
+    path: Assets/_Projects/Acrylic Rings/Scene/AcrylicRIngs_1.unity
+    guid: d7f5c8a5dafe23e429bec1129785ae52
+  - enabled: 1
+    path: Assets/_Projects/Acrylic Rings/Scene/AcrylicRIngs_2.unity
+    guid: d4ff0cf2487e9fe4e8065b0c84663248
+  - enabled: 1
+    path: Assets/_Projects/Acrylic Rings/Scene/AcrylicRIngs_3.unity
+    guid: 777a6284fa5c80745a6806deeb9122ad
+  - enabled: 1
+    path: Assets/_Projects/Acrylic Rings/Scene/AcrylicRIngs_4.unity
+    guid: e09631940cdb2214e8c2478d1c79fde7
+  - enabled: 1
+    path: Assets/_Projects/Acrylic Rings/Scene/AcrylicRIngs_5.unity
+    guid: e6beedcd2033c6b4982cfb6276036c78
+  - enabled: 1
+    path: Assets/_Projects/Acrylic Rings/Scene/AcrylicRIngs_6.unity
+    guid: bedf49c095f268b4aab0100641fc1386
+  - enabled: 1
+    path: Assets/_Projects/Acrylic Rings/Scene/AcrylicRIngs_7.unity
+    guid: b25d30bb7750a9547bf557ecd26e14ec
+  - enabled: 1
+    path: Assets/_Projects/Acrylic Rings/Scene/AcrylicRIngs_8.unity
+    guid: 6bea431f9e0f39e469fc66db1257f918
   m_configObjects: {}

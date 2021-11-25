@@ -26,10 +26,16 @@ public class AccessoryStep : MonoBehaviour
     void Awake()
     {
         GameManager.IS_READY_FOR_INPUT = true;
-        InputManager.inst.OnDragCallback += Move;
+        //InputManager.inst.OnDragCallback += Move;
     }
 
-    private void OnEnable()
+    void Start()
+    {
+        print("cc");
+        OnAccessoryPanel();
+    }
+
+    public void OnAccessoryPanel()
     {
         accessorySelectionPanel.SetActive(true);
 
@@ -43,6 +49,7 @@ public class AccessoryStep : MonoBehaviour
         }
     }
 
+
     public void OnAccessorySelection(int index)
     {
         selectedAccessoryIndex = index;
@@ -50,6 +57,8 @@ public class AccessoryStep : MonoBehaviour
         accessory[index].transform.position = startPos.position;
 
         onHandAccessories[index].SetActive(true);
+        
+        isTargetFound = true;
 
         GameManager.IS_READY_FOR_INPUT = true;
 
@@ -58,9 +67,13 @@ public class AccessoryStep : MonoBehaviour
     void Move(Vector2 pos)
     {
         if (isTargetFound)
+        {
+            //accessorySelectionPanel.SetActive(false);
             return;
+        }
 
         isTargetFound = true;
+        //accessorySelectionPanel.SetActive(false);
 
         Debug.Log("move");
         //LeanTween.move(accessory, targetPos.transform.position, .3f);

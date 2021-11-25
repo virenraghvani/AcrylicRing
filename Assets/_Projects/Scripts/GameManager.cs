@@ -2,17 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using UnityEngine.SceneManagement;
 using Cinemachine;
 
 public class GameManager : MonoBehaviour
 {
-    public bool onDryingMachine_bool, onAccessory_bool;
+    public bool onDryingMachine_bool, onAccessory_bool, onGlitterPaint_bool;
 
     private int blobNo;
 
     [SerializeField]
-    private GameObject brush, nailPolishBottle, dottedLine, sandingMachine, accessoryStep, finalHand, finalConfetti, gameOverPanel, powderSelectionPanel;
+    private GameObject brush, nailPolishBottle, dottedLine, sandingMachine, accessoryStep, finalHand, finalConfetti, levelStartPanel, gameOverPanel, powderSelectionPanel;
 
     [HideInInspector]
     public MeshRenderer ringFinalOutput;
@@ -56,14 +56,16 @@ public class GameManager : MonoBehaviour
 
     public int currentLevel;
 
-    [SerializeField]
-    private Image img_customerRequest;
+    //[SerializeField]
+    //private Image img_customerRequest;
 
-    [SerializeField]
-    private Sprite[] customerRequests;
+    //[SerializeField]
+    //private Sprite[] customerRequests;
 
     [SerializeField]
     private GameObject [] endMessages;
+
+    public Text levelNo_text;
 
     private void Awake()
     {
@@ -78,11 +80,12 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         //  SpawnRing();
-        powderSelectionPanel.SetActive(true);
-
+        //powderSelectionPanel.SetActive(true);
+        
+        levelNo_text.text = "Level " + PlayerPrefs.GetInt("currLevel_pp");
         currentLevel = PlayerPrefs.GetInt("level", 0);
 
-        img_customerRequest.sprite = customerRequests[currentLevel % 5];
+        //img_customerRequest.sprite = customerRequests[currentLevel % 5];
     }
 
     void SpawnRing()
@@ -101,7 +104,13 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Tab))
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            //SceneManager.LoadScene(0);
+            ScreenCapture.CaptureScreenshot("icon.png");
+        }
+        
+        if (Input.GetKeyDown(KeyCode.Tab))
         {
             if (blobNo > 1)
             {
@@ -201,14 +210,20 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(.1f);
         
         ringHolderAnimator.SetTrigger("dryIn");
-        
-        yield return new WaitForSeconds(2);
+
+        if (onDryingMachine_bool)
+            yield return new WaitForSeconds(2);
+        else
+            yield return new WaitForSeconds(0.1f);
 
         currentRing.GetComponent<RingData>().ringFinal.SetActive(true);
         currentRing.GetComponent<RingData>().ringParts.SetActive(false);
 
+        if (onDryingMachine_bool)
+            yield return new WaitForSeconds(3);
+        else
+            yield return new WaitForSeconds(1);
 
-        yield return new WaitForSeconds(3);
 
         currentRing.GetComponent<RingData>().ringMesh.material = matRough;
 
@@ -218,9 +233,10 @@ public class GameManager : MonoBehaviour
 
             yield return new WaitForSeconds(1);
         }
-            ringHolderAnimator.SetTrigger("dryOut");
-
-            yield return new WaitForSeconds(1);
+        
+        ringHolderAnimator.SetTrigger("dryOut");
+        
+        yield return new WaitForSeconds(1);
 
         if (onDryingMachine_bool)
         {
@@ -310,15 +326,25 @@ public class GameManager : MonoBehaviour
 
     public void NextLevel()
     {
+        if(PlayerPrefs.GetInt("loopCurrLevel_pp") >= 8)
+        {
+            PlayerPrefs.SetInt("loopCurrLevel_pp", 0);   
+        }
+
+        PlayerPrefs.SetInt("loopCurrLevel_pp", PlayerPrefs.GetInt("loopCurrLevel_pp") + 1);
+        PlayerPrefs.SetInt("currLevel_pp", PlayerPrefs.GetInt("currLevel_pp") + 1);
+
+
         finalHand.SetActive(false);
 
         cam4_hand2.SetActive(false);
         cam1.SetActive(true);
 
-        powderSelectionPanel.SetActive(true);
+        //powderSelectionPanel.SetActive(true);
 
         gameOverPanel.SetActive(false);
         accessoryStep.SetActive(false);
+        //accessoryStep.GetComponent<AccessoryStep>().OnAccessoryPanel();
 
         ringHolderAnimator.transform.GetChild(0).localRotation = Quaternion.identity;
         ringHolderAnimator.enabled = true;
@@ -332,8 +358,15 @@ public class GameManager : MonoBehaviour
 
         currentLevel++;
         PlayerPrefs.SetInt("level", currentLevel);
-        img_customerRequest.sprite = customerRequests[currentLevel % 5];
+        //img_customerRequest.sprite = customerRequests[currentLevel % 5];
 
+        Invoke("OnLevelStartPanel", 0.5f);
+    }
+
+    void OnLevelStartPanel()
+    {
+        SceneManager.LoadScene(PlayerPrefs.GetInt("loopCurrLevel_pp"));
+        //levelStartPanel.SetActive(true);
     }
 
     public void OnPowderSelection(int index)
@@ -368,7 +401,26 @@ public class GameManager : MonoBehaviour
         matTinSurface.CopyPropertiesFromMaterial(mat);
         matTinSurface.SetFloat("_Glossiness", 0.55f);
         matTinSurface.SetTexture("_BumpMap", normalMap);
-        matTinSurface.SetFloat("_BumpScale", 0.55f);
 
+        if (onGlitterPaint_bool)
+        {
+            matRough.SetFloat("_BumpScale", 0.55f);
+            matShine.SetFloat("_BumpScale", 0.55f);
+            matTinBorder.SetFloat("_BumpScale", 0.55f);
+            matFinalHand.SetFloat("_BumpScale", 0.55f);
+            matTinSides.SetFloat("_BumpScale", 0.55f);
+            matTinSurface.SetFloat("_BumpScale", 0.55f);
+        }
+        else
+        {
+            matRough.SetFloat("_BumpScale", 0);
+            matShine.SetFloat("_BumpScale", 0);
+            matTinBorder.SetFloat("_BumpScale", 0);
+            matFinalHand.SetFloat("_BumpScale", 0);
+            matTinSides.SetFloat("_BumpScale", 0);
+            matTinSurface.SetFloat("_BumpScale", 0);
+        }
     }
+
+
 }
